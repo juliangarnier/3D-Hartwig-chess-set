@@ -700,6 +700,10 @@ h2 {
   transition: top 1.5s ease-in-out;
 }
 
+#app[data-state="game"] #logo {
+  transform: translateZ(-9999px) translateY(-40em);
+}
+
 .symbol {
   position: relative;
   float: left;
