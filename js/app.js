@@ -14,16 +14,27 @@ var photon = document.getElementsByClassName("photon-shader");
 var sphere = document.getElementsByClassName("sphere");
 var piece = document.getElementsByClassName("piece");
 var square = document.getElementsByClassName("square");
+var highlighted = document.getElementsByClassName("highlight");
 var app = document.getElementById("app");
 var scene = document.getElementById("scene");
-var sceneX = 70;
+var cursor = document.getElementById("cursor");
+var sceneX = 40;
 var sceneY = 90;
 var controls = false;
 var animated = false;
 var mouseDown = false;
+var leapDown = false;
 var closestElement = null;
 var white = "White";
 var black = "Black";
+var inverse = 1;
+var fingerPos = {};
+
+document.getElementById('overlay').addEventListener('click', function() {
+  var el = document.documentElement,
+      rfs = el.webkitRequestFullScreen;
+      rfs.call(el);
+});
 
 function checkTouch() {
   var d = document.createElement("div");
@@ -57,13 +68,13 @@ function grabPiece(event) {
     event.preventDefault();
     mouseDown = true;
     grabbed = this;
+    console.log(this);
     grabbedID = grabbed.id.substr(-2);
     startX = event.pageX - (document.body.offsetWidth/2);
     startY = event.pageY - (document.body.offsetHeight/2);
     style = window.getComputedStyle(grabbed);
     matrix = style.getPropertyValue('-webkit-transform');
     matrixParts = matrix.split(",");
-    grabbedW = parseInt(style.getPropertyValue('width'))/2;
     grabbedX = parseInt(matrixParts[4]);
     grabbedY = parseInt(matrixParts[5]);
     grabbed.classList.add("grabbed");
@@ -116,6 +127,9 @@ function dropPiece(event) {
     }
     updateBoard();
     grabbed.classList.remove("grabbed");
+    for(var i = 0; i < square.length; i++) {
+      square[i].classList.remove("highlight");
+    }
     mouseDown = false;
   }
 }
@@ -223,7 +237,8 @@ function updateBoard() {
     document.getElementById("undo").dataset.state="inactive";
   }
   if (currentColor === "w") {
-    updateView(0,0);
+    inverse = 1;
+    updateView(sceneX,0);
     Log(white+"'s turn");
     if (inCheck) { 
       Log(white+"'s king is in check !");
@@ -232,7 +247,8 @@ function updateBoard() {
       Log(white+"'s king is in checkmate ! "+black+" wins !");
     }
   } else {
-    updateView(0,180);
+    inverse = -1;
+    updateView(sceneX,180);
     Log(black+"'s turn");
     if (inCheck) { 
       Log(black+"'s king is in check !");
@@ -264,35 +280,36 @@ function undoMove() {
   updateCaptured();
 }
 
-function highLight(element, square) {
+function getClosestElement(element, square) {
 
-  function winPos(obj) {
+  function getTransVal(obj) {
     var box = obj.getBoundingClientRect();
     return {
       x : box.left,
-      y : box.top
+      y : box.top,
+      w : box.width,
+      h : box.height
     }
   }
 
-  var elementLeft = winPos(element).x + grabbedW;
-      elementRight = elementLeft + element.offsetWidth - grabbedW,
-      elementTop = winPos(element).y + grabbedW,
-      elementBottom = elementTop + element.offsetHeight - grabbedW,
+  var elementLeft = getTransVal(element).x + getTransVal(element).w/2;
+      elementRight = elementLeft + getTransVal(element).w - getTransVal(element).w/2,
+      elementTop = getTransVal(element).y + getTransVal(element).h/2,
+      elementBottom = elementTop + getTransVal(element).h - getTransVal(element).h/2,
       smallestDistance = null;
 
   for(var i = 0; i < square.length; i++) {
 
-
     if (currentColor === "w") {
-    var squareLeft = winPos(square[i]).x,
-        squareRight = squareLeft + square[i].offsetWidth,
-        squareTop = winPos(square[i]).y,
-        squareBottom = squareTop + square[i].offsetHeight;
+    var squareLeft = getTransVal(square[i]).x,
+        squareRight = squareLeft + getTransVal(square[i]).w,
+        squareTop = getTransVal(square[i]).y,
+        squareBottom = squareTop + getTransVal(square[i]).h;
     } else {
-    var squareLeft = winPos(square[i]).x + grabbedW,
-        squareRight = squareLeft + square[i].offsetWidth,
-        squareTop = winPos(square[i]).y + grabbedW,
-        squareBottom = squareTop + square[i].offsetHeight;
+    var squareLeft = getTransVal(square[i]).x + getTransVal(square[i]).w/2,
+        squareRight = squareLeft + getTransVal(square[i]).w,
+        squareTop = getTransVal(square[i]).y + getTransVal(square[i]).h/2,
+        squareBottom = squareTop + getTransVal(square[i]).h;
     }
 
     var xPosition = 0,
@@ -316,32 +333,39 @@ function highLight(element, square) {
     }
     if(smallestDistance === null) {
       smallestDistance = valueForComparison;
-      closestElement = square[i];
+      var closestElement = square[i];
     } else if(valueForComparison < smallestDistance) {
       smallestDistance = valueForComparison;
-      closestElement = square[i];
+      var closestElement = square[i];
     }
+
   }
 
-  for(var i = 0; i < square.length; i++) {
-    square[i].classList.remove("highlight");
-  }
+  return closestElement;
 
+}
+
+function highLight(element, square) {
+
+  closestElement = getClosestElement(element, square);
+  for(var i = 0; i < highlighted.length; i++) {
+    highlighted[i].classList.remove("highlight");
+  }
   closestElement.classList.add("highlight");
-  targetX = closestElement.offsetLeft;
-  targetY = closestElement.offsetTop;
 
 }
 
 function updateView(sceneXAngle,sceneZAngle) {
   scene.style.webkitTransform = "rotateX( " + sceneXAngle + "deg) rotateZ( " + sceneZAngle + "deg)";
-  for(var i=0; i<sphere.length; i++) {
-    updateSphere(sphere[i],sceneXAngle,sceneZAngle);
-  }
+  setTimeout(function() {
+    for(var i=0; i<sphere.length; i++) {
+      updateSphere(sphere[i],sceneXAngle,sceneZAngle);
+    }
+  },1);
 }
 
 function updateSphere(sphere,sceneXAngle,sceneZAngle) {
-  sphere.style.WebkitTransform = "rotateZ( " + ( - sceneZAngle ) + "deg ) rotateX( " + ( - sceneXAngle ) + "deg )";
+  sphere.style.WebkitTransform = "rotateZ( " + ( -sceneZAngle ) + "deg ) rotateX( " + ( -sceneXAngle ) + "deg )";
 }
 
 function renderPoly() {
@@ -413,12 +437,144 @@ function UI() {
   document.getElementById("undo").addEventListener(press, undoMove, false);
 }
 
+function leapOver(fingerPosX, fingerPosZ) {
+  if (!leapDown && controls) {
+    cursor.style.webkitTransform = "translateX( " + fingerPosX + "px) translateY( " + fingerPosZ + "px) translateZ( .4em)";
+    var closestElement = getClosestElement(cursor, piece);
+    var color = closestElement.id.charAt(0);
+    if (color === currentColor) {
+      highLight(cursor, piece);
+      grabbed = document.getElementById(closestElement.id);
+    }
+  }
+}
+
+function leapGrab(fingerPosX, fingerPosZ) {
+  if (!leapDown && controls) {
+    startX = fingerPosX;
+    startZ = fingerPosZ;
+    grabbedID = grabbed.id.substr(-2);
+    grabbed.classList.add("grabbed");
+    showMoves(grabbedID);
+    cursor.classList.add('hidden');
+    console.log(grabbed);
+    setTimeout(function(){
+      leapDown = true;
+    }, 100);
+  }
+}
+
+function leapMove(fingerPosX, fingerPosZ, fingerPosY) {
+  if (leapDown && controls) {
+    style = window.getComputedStyle(grabbed);
+    matrix = style.getPropertyValue('-webkit-transform');
+    matrixParts = matrix.split(",");
+    grabbedX = parseInt(matrixParts[4]);
+    grabbedZ = parseInt(matrixParts[5]);
+    grabbed.classList.add("grabbed");
+    moveX = fingerPosX;
+    moveZ = fingerPosZ;
+    distX = moveX-startX;
+    distZ = moveZ-startZ;
+    newX  = grabbedX+distX;
+    newZ  = grabbedZ+distZ;
+    grabbed.style.webkitTransform = "translateX(" + newX + "px) translateY(" + newZ + "px) translateZ( 2px)";
+    showMoves(grabbedID);
+    highLight(grabbed, square);
+  }
+}
+
+function leapDrop() {
+  if (leapDown && controls) {
+    var squareEndPos = closestElement.id;
+    function getMove(moveType) {
+      return document.getElementById(squareEndPos).className.match(new RegExp('(\\s|^)'+moveType+'(\\s|$)'));
+    }
+    if ( getMove("valid") ) {
+      if ( getMove("captured") ) {
+        var type = chess.get(squareEndPos).type;
+        var color = chess.get(squareEndPos).color;
+        if (currentColor === "w") {
+          createPiece(color, type, "w-jail");
+        } else {
+          createPiece(color, type, "b-jail");
+        }
+      }
+      hideMoves(grabbedID);
+      chess.move({ from: grabbedID, to: squareEndPos, promotion: 'q' });
+    } else {
+      hideMoves(grabbedID);
+      grabbed.style.webkitTransform = "translateX(0px) translateY(0px) translateZ(2px)";
+    }
+    updateBoard();
+    grabbed.classList.remove("highlight");
+    grabbed.classList.remove("grabbed");
+    cursor.classList.remove('hidden');
+    leapDown = false;
+  }
+}
+
+var controller = new Leap.Controller({enableGestures:true});
+var fingers = {};
+var gestures = {};
+var startDirection = {};
+var endDirection = {};
+
+controller.loop(function(frame) {
+
+  // Pointables
+  var fingerIds = {};
+  for(var i = 0; i < 1; i++) {
+    var finger = frame.pointables[i];
+    if (typeof(finger) != 'undefined') {
+      fingerPos.x = (finger.tipPosition[0]*4)*inverse + (document.body.offsetWidth/2);
+      fingerPos.y = finger.tipPosition[1];
+      fingerPos.z = (finger.tipPosition[2]*4)*inverse + (document.body.offsetWidth/2);
+      leapOver(fingerPos.x, fingerPos.z);
+      leapMove(fingerPos.x, fingerPos.z, fingerPos.y);
+    }
+    //console.log(fingerPos);
+  }
+
+  // Gestures
+  if (typeof(frame.gestures) != 'undefined') {
+    for (var i = 0, gestureCount = frame.gestures.length; i != gestureCount; i++) {
+      var gesture = frame.gestures[i];
+      var type = gesture.type;
+      var state = gesture.state;
+      //console.log(gesture);
+      if (type === "keyTap") {
+        if (state === "stop") {
+          //do stuff on tap
+          if (!leapDown) {
+            leapGrab(fingerPos.x, fingerPos.z);
+          }
+          if (leapDown) {
+            leapDrop();
+          }
+        } 
+      }
+      if (type === "circle") {
+        if (state === "start") {
+          //do stuff on tap
+          // if (!leapDown) {
+          //   undoMove();
+          // }
+          if (leapDown) {
+            leapDrop();
+          }
+        } 
+      }
+    }
+  }
+});
+
 function init() {
   app.classList.remove("loading");
   document.body.classList.add("animated");
   animated = true;
   updateBoard();
-  optionScreen();
+  Continue();
   initControls();
   UI();
   function anime() { document.getElementById("logo").innerHTML = ""; }
