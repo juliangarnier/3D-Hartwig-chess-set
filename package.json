@@ -1,0 +1,22 @@
+{
+  "name": "3d-hartwig-chess-set",
+  "version": "1.0.0",
+  "description": "3D Hartwig chess set  ====================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongrogers/3D-Hartwig-chess-set.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongrogers/3D-Hartwig-chess-set/issues"
+  },
+  "homepage": "https://github.com/dongrogers/3D-Hartwig-chess-set#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
