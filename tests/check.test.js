@@ -34,7 +34,7 @@ test('cross check', () => {
   expect(chess.in_check()).toBe(true);
   chess.move({from: 'e2', to: 'd2',});
   expect(chess.in_check()).toBe(true);
-  console.log(chess.ascii());
+//  console.log(chess.ascii());
 });
 
 test('moving into check', () => {
