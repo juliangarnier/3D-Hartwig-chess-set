@@ -64,21 +64,16 @@ Consider the fen string:
 
 The fen string can be broken down into the 6 segments with a space as the delimiter.
 
-Segment 1: 3q3k/pp2b1pp/8/2P5/1P2RBQ1/2P5/P4rPp/7K
-
-Segment 2: w
-
-Segment 3: -
-
-Segment 4: - 
-
-Segment 5: 5
-
-Segment 6: 10 
+* Segment 1: 3q3k/pp2b1pp/8/2P5/1P2RBQ1/2P5/P4rPp/7K
+* Segment 2: w
+* Segment 3: -
+* Segment 4: - 
+* Segment 5: 5
+* Segment 6: 10 
 
 The information in each segment is interpreted as:
 
-Segment 1: The first row has 3 empty spaces, a black queen, three more empty spaces and a black knight
+* Segment 1: The first row has 3 empty spaces, a black queen, three more empty spaces and a black knight
            The second row has 2 black pawns, 2 empty spaces, 1 black bishop, 1 empty space, and 2 more black pawns
            The third row has no pieces
            ....
@@ -96,14 +91,10 @@ Segment 1: The first row has 3 empty spaces, a black queen, three more empty spa
      1 | .  .  .  .  .  .  .  K |
        +------------------------+
          a  b  c  d  e  f  g  h
-
-Segment 2: it is white's turn
-
-Segment 3: no castling is possible
-
-Segment 4: no en passant captures are possible
-
-Segment 5: 10 half turns have passed (meaning black and white have moved 5 times each)
-
-Segment 6: it is turn 5
+         
+* Segment 2: it is white's turn
+* Segment 3: no castling is possible
+* Segment 4: no en passant captures are possible
+* Segment 5: 10 half turns have passed (meaning black and white have moved 5 times each)
+* Segment 6: it is turn 5
 
