@@ -77,21 +77,7 @@ The information in each segment is interpreted as:
            The second row has 2 black pawns, 2 empty spaces, 1 black bishop, 1 empty space, and 2 more black pawns\
            The third row has no pieces\
            ....\
-           The eighth row has 7 empty spaces and the white king.\
-           A visual representation of the board can be seen below:
-           
-       +------------------------+
-     8 | .  .  .  q  .  .  .  k |
-     7 | p  p  .  .  b  .  p  p |
-     6 | .  .  .  .  .  .  .  . |
-     5 | .  .  P  .  .  .  .  . |
-     4 | .  P  .  .  R  B  Q  . |
-     3 | .  .  P  .  .  .  .  . |
-     2 | P  .  .  .  .  r  P  p |
-     1 | .  .  .  .  .  .  .  K |
-       +------------------------+
-         a  b  c  d  e  f  g  h
-           
+           The eighth row has 7 empty spaces and the white king.
 * Segment 2: it is white's turn
 * Segment 3: no castling is possible
 * Segment 4: no en passant captures are possible
