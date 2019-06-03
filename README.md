@@ -73,7 +73,7 @@ The fen string can be broken down into the 6 segments with a space as the delimi
 
 The information in each segment is interpreted as:
 
-* Segment 1:\ 
+* Segment 1:   
            The first row has 3 empty spaces, a black queen, three more empty spaces and a black knight\
            The second row has 2 black pawns, 2 empty spaces, 1 black bishop, 1 empty space, and 2 more black pawns\
            The third row has no pieces\
