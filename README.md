@@ -73,27 +73,13 @@ The fen string can be broken down into the 6 segments with a space as the delimi
 
 The information in each segment is interpreted as:
 
-* Segment 1: The first row has 3 empty spaces, a black queen, three more empty spaces and a black knight
-           The second row has 2 black pawns, 2 empty spaces, 1 black bishop, 1 empty space, and 2 more black pawns
-           The third row has no pieces
-           ....
-           The eighth row has 7 empty spaces and the white king.
-           A visual representation of the board can be seen below:
-
-
-       +------------------------+
-     8 | .  .  .  q  .  .  .  k |
-     7 | p  p  .  .  b  .  p  p |
-     6 | .  .  .  .  .  .  .  . |
-     5 | .  .  P  .  .  .  .  . |
-     4 | .  P  .  .  R  B  Q  . |
-     3 | .  .  P  .  .  .  .  . |
-     2 | P  .  .  .  .  r  P  p |
-     1 | .  .  .  .  .  .  .  K |
-       +------------------------+
-         a  b  c  d  e  f  g  h
-
-
+* Segment 1: The first row has 3 empty spaces, a black queen, three more empty spaces and a black knight \n
+           The second row has 2 black pawns, 2 empty spaces, 1 black bishop, 1 empty space, and 2 more black pawns \n
+           The third row has no pieces \n
+           .... \n
+           The eighth row has 7 empty spaces and the white king. \n
+           A visual representation of the board can be seen below: \n
+           
 * Segment 2: it is white's turn
 * Segment 3: no castling is possible
 * Segment 4: no en passant captures are possible
