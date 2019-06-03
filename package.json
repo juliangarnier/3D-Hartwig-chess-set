@@ -18,5 +18,9 @@
   "homepage": "https://github.com/dongrogers/3D-Hartwig-chess-set#readme",
   "devDependencies": {
     "jest": "^24.8.0"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "photon": "^2.0.1"
   }
 }
