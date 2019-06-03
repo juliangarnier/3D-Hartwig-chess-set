@@ -17,8 +17,8 @@ Libraries
 * Photon : http://photon.attasi.com
 * Chess.js : https://github.com/jhlywa/chess.js
 
-**FOR GRADERS**
-**FEN STRING DESCRIPTION**
+
+Fen String Description
 =====================
 
 The fen string is a string delimited by spaces which represents a game state. The fen string is broken into 6 segments:
@@ -79,7 +79,7 @@ Segment 1: The first row has 3 empty spaces, a black queen, three more empty spa
            ....
            The eighth row has 7 empty spaces and the white king.
            A visual representation of the board can be seen below:
-           
+
        +------------------------+
      8 | .  .  .  q  .  .  .  k |
      7 | p  p  .  .  b  .  p  p |
