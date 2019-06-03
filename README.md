@@ -80,6 +80,7 @@ The information in each segment is interpreted as:
            The eighth row has 7 empty spaces and the white king.
            A visual representation of the board can be seen below:
 
+
        +------------------------+
      8 | .  .  .  q  .  .  .  k |
      7 | p  p  .  .  b  .  p  p |
@@ -91,7 +92,8 @@ The information in each segment is interpreted as:
      1 | .  .  .  .  .  .  .  K |
        +------------------------+
          a  b  c  d  e  f  g  h
-         
+
+
 * Segment 2: it is white's turn
 * Segment 3: no castling is possible
 * Segment 4: no en passant captures are possible
