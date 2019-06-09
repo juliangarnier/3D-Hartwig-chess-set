@@ -4,7 +4,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 * { box-sizing: border-box; tap-highlight-color:rgba(0,0,0,0); }
 
-body { 
+body {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -14,7 +14,7 @@ body {
   font-weight: 400;
 }
 
-button { 
+button {
   font-family: 'Lato', avenir, sans-serif;
   font-weight: 400;
 }
@@ -25,7 +25,7 @@ body:not(.animated) *:not(#panes) { transition: all 0s linear; }
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: black; 
+  background-color: black;
   color: white;
 }
 
@@ -68,7 +68,7 @@ body:not(.animated) *:not(#panes) { transition: all 0s linear; }
 
 #app[data-state="game"] #container { transform: inherit; }
 
-#scene { 
+#scene {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -98,7 +98,7 @@ body:not(.animated) *:not(#panes) { transition: all 0s linear; }
   transform: translateZ(.3em);
 }
 
-#board:after, #frame:after, #frame:before { 
+#board:after, #frame:after, #frame:before {
   position: absolute;
   content: "";
   width: 100%;
@@ -136,22 +136,22 @@ th, td {
   height: 1em;
 }
 
-th { 
-  vertical-align: top; 
-  font-size: 75%; 
+th {
+  vertical-align: top;
+  font-size: 75%;
   line-height: .5em;
 }
 
 tbody th {
-  vertical-align: top;  
+  vertical-align: top;
   line-height: .9em;
 }
 
-table span { 
+table span {
   display: block;
   height: 100%;
-  font-size: .26em; 
-  color: rgba(255,255,255,.75); 
+  font-size: .26em;
+  color: rgba(255,255,255,.75);
   transform: translateZ(1px);
 }
 
@@ -178,13 +178,13 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
 #app[data-frame="on"] #w-jail { bottom: 1em;      margin-left: -4em; }
 #app[data-frame="on"] #b-jail { top: 1em;         margin-left: -4em; }
 
-#w-jail { 
+#w-jail {
   bottom: 1em;
   transform-style: preserve-3d;
   transform: rotateZ(0deg) translateZ(2px);
 }
 
-#b-jail { 
+#b-jail {
   top: 1em;
   transform-style: preserve-3d;
   transform: rotateZ(180deg) translateZ(2px);
@@ -202,7 +202,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
 #b-jail .piece { transform-origin: center; transform: rotateZ(180deg); }
 #w-jail .piece { transform-origin: center; transform: rotateZ(0deg);}
 
-@media screen and (min-width: 56em) { 
+@media screen and (min-width: 56em) {
 
   #app[data-frame="off"] #w-jail { bottom: 6.9em;   margin-left: 1.5em; }
   #app[data-frame="off"] #b-jail { top: 6.9em;      margin-left: -9.5em; }
@@ -230,20 +230,17 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
 }
 
 .piece,
-.poly, 
-.poly .face,  
-.poly-group:first-child, 
+.poly,
+.poly .face,
+.poly-group:first-child,
 .bishop .poly-group:nth-child(2) {
   transition: transform .2s linear;
 }
 
-.piece:active {
-  cursor: grabbing;
-  cursor: -moz-grabbing;
-  cursor: grabbing;
-}
-
 .piece.grabbed {
+	cursor: grabbing;
+	cursor: -moz-grabbing;
+	cursor: grabbing;
   transition: all 0s linear;
   z-index: 9999;
 }
@@ -266,7 +263,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   box-shadow: 0 0 1em .2em rgba(0,0,0,.6);
 }
 
-.piece:active .poly, .piece.grabbed .poly{
+.piece.grabbed .poly{
   transform: translateZ( 10em );
 }
 
@@ -311,7 +308,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   transform: translateZ( 1px );
 }
 
-.valid:before, .current:before { 
+.valid:before, .current:before {
   width: .3em;
   height: .3em;
   margin-left: -.15em;
@@ -319,17 +316,17 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   background: rgba(255,255,255,.5);
 }
 
-.highlight:before { 
+.highlight:before {
   z-index: 2;
   box-shadow: 0 0 1em 1em rgba(255,255,255,.4);
 }
 
-.valid.highlight:before, 
-.current.highlight:before, 
+.valid.highlight:before,
+.current.highlight:before,
 .current:before { background: rgba(255,255,255,1); }
 
 .valid.highlight:after,
-.current.highlight:after { 
+.current.highlight:after {
   width: .6em;
   height: .6em;
   margin-left: -.3em;
@@ -337,7 +334,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   border: .1em solid rgba(255,255,255,.8);
 }
 
-.valid.captured:after { 
+.valid.captured:after {
   width: .8em;
   height: .8em;
   margin-left: -.4em;
@@ -403,7 +400,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   transform: rotateY(90deg) translateX(-4em) translateZ(4em);
 }
 
-/* ---------------------------------------------------------------------------------------------------- rook / queen and king bodies */ 
+/* ---------------------------------------------------------------------------------------------------- rook / queen and king bodies */
 
 .rook .poly-group {
   width: 6em;
@@ -446,7 +443,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   transform: rotateY(90deg) translateX(-6em) translateZ(6em);
 }
 
-/* ---------------------------------------------------------------------------------------------------- knight */ 
+/* ---------------------------------------------------------------------------------------------------- knight */
 
 .knight .poly-group {
   width: 6em;
@@ -531,8 +528,8 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   content: "";
   position: absolute;
   top: -1em;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 1.1em solid transparent;
   border-right: 1.1em solid transparent;
   border-bottom: 1.1em solid #fff;
@@ -544,8 +541,8 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   content: "";
   position: absolute;
   bottom: -1em;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 1.1em solid transparent;
   border-right: 1.1em solid transparent;
   border-top: 1.1em solid #fff;
@@ -585,7 +582,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
 
 .bishop .tp { box-shadow: 0 0 0 #fff; }
 
-/* ---------------------------------------------------------------------------------------------------- queen */ 
+/* ---------------------------------------------------------------------------------------------------- queen */
 
 .queen .poly-group:first-child {
   width: 6em;
@@ -619,7 +616,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
   transform-origin: 2.5em 2.5em;
 }
 
-/* ---------------------------------------------------------------------------------------------------- king */ 
+/* ---------------------------------------------------------------------------------------------------- king */
 
 .king .poly-group:first-child {
   width: 6em;
@@ -716,7 +713,7 @@ h2 {
   animation : fall 2s 1 ease-in-out;
 }
 
-.loading .symbol { 
+.loading .symbol {
   top: 0;
   animation : rotateX 2s 1 ease-in-out;
 }
@@ -886,9 +883,9 @@ h2 {
 .btn.white:hover,
 .btn.white:active { background-color: #CACACA; }
 
-#menu .btn { 
-  width: 6em; 
-  margin: 1em 0em; 
+#menu .btn {
+  width: 6em;
+  margin: 1em 0em;
 }
 
 #top-bar .btn {
@@ -983,12 +980,12 @@ input[type=checkbox]:hover + label:after {
 }
 
 .set-theme:hover { cursor: pointer; background: rgba(255,255,255,.3); }
-.set-theme:hover .cube, 
+.set-theme:hover .cube,
 .set-theme:active .cube { transform: rotateX(146deg) rotateY(45deg) translateY(0.1em) translateX(3em); }
 #app[data-theme="classic"] .set-theme[data-theme="classic"],
 #app[data-theme="marble"] .set-theme[data-theme="marble"],
 #app[data-theme="flat"] .set-theme[data-theme="flat"],
-#app[data-theme="wireframe"] .set-theme[data-theme="wireframe"] { 
+#app[data-theme="wireframe"] .set-theme[data-theme="wireframe"] {
   background: rgba(255,255,255,1);
 }
 
@@ -1042,8 +1039,8 @@ input[type=checkbox]:hover + label:after {
   transform: translateZ(9999px);
 }
 
-.loading #overlay { 
-  opacity: 1; 
+.loading #overlay {
+  opacity: 1;
   background-image: url(../img/ajax-loader.gif);
   background-position: 50% 60%;
   background-repeat: no-repeat;
@@ -1081,41 +1078,41 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 #app[data-theme="classic"] #overlay                                   { background-color: #E5E3DF; }
 #app[data-theme="classic"] #scene                                     { background: radial-gradient(center, ellipse cover, #FFF 25%, #E5E3DF 72%); }
 #app[data-theme="classic"][data-frame="off"] #frame,
-#app[data-theme="classic"][data-frame="off"] #board:after, 
-#app[data-theme="classic"][data-frame="off"] #frame:after, 
+#app[data-theme="classic"][data-frame="off"] #board:after,
+#app[data-theme="classic"][data-frame="off"] #frame:after,
 #app[data-theme="classic"][data-frame="off"] #frame:before            { background-color: #A28157; }
 #app[data-theme="classic"][data-frame="on"]  #frame,
-#app[data-theme="classic"][data-frame="on"]  #board:after, 
-#app[data-theme="classic"][data-frame="on"]  #frame:after, 
+#app[data-theme="classic"][data-frame="on"]  #board:after,
+#app[data-theme="classic"][data-frame="on"]  #frame:after,
 #app[data-theme="classic"][data-frame="on"]  #frame:before            { background-color: #303132; }
 #app[data-theme="classic"] .square                                    { background-color: #212121; }
-#app[data-theme="classic"] tbody tr:nth-child(odd) 
-                           .square:nth-child(even), 
-#app[data-theme="classic"] tbody tr:nth-child(even) 
+#app[data-theme="classic"] tbody tr:nth-child(odd)
+                           .square:nth-child(even),
+#app[data-theme="classic"] tbody tr:nth-child(even)
                           .square:nth-child(odd)                      { background-color: #CF9269; }
-#app[data-theme="classic"] .black .poly > div, 
+#app[data-theme="classic"] .black .poly > div,
 #app[data-theme="classic"] .black .poly .sphere                       { background-color: #303030; }
 #app[data-theme="classic"] .white .poly > div,
 #app[data-theme="classic"] .white .poly .sphere                       { background-color: #C19666; }
-#app[data-theme="classic"] .white.bishop .rectangle.a .tp:before, 
+#app[data-theme="classic"] .white.bishop .rectangle.a .tp:before,
 #app[data-theme="classic"] .white.bishop .rectangle.b .tp:before      { border-bottom: 1.1em solid #F2BD7D; }
-#app[data-theme="classic"] .white.bishop .rectangle.a .tp:after, 
+#app[data-theme="classic"] .white.bishop .rectangle.a .tp:after,
 #app[data-theme="classic"] .white.bishop .rectangle.b.prim .tp:after  { border-top: 1.1em solid #F2BD7D; }
-#app[data-theme="classic"] .black.bishop .rectangle.a .tp:before, 
+#app[data-theme="classic"] .black.bishop .rectangle.a .tp:before,
 #app[data-theme="classic"] .black.bishop .rectangle.b .tp:before      { border-bottom: 1.1em solid #434343; }
-#app[data-theme="classic"] .black.bishop .rectangle.a .tp:after, 
+#app[data-theme="classic"] .black.bishop .rectangle.a .tp:after,
 #app[data-theme="classic"] .black.bishop .rectangle.b.prim .tp:after  { border-top: 1.1em solid #434343; }
 
 /* ---------------------------------------------------------------------------------------------------- classic textures */
 
 #app[data-theme="classic"] th                       { background-image: url(../img/classic-frame.png); }
-#app[data-theme="classic"][data-frame="off"] #board:after, 
-#app[data-theme="classic"][data-frame="off"] #frame:after, 
-#app[data-theme="classic"][data-frame="off"] #frame:before 
+#app[data-theme="classic"][data-frame="off"] #board:after,
+#app[data-theme="classic"][data-frame="off"] #frame:after,
+#app[data-theme="classic"][data-frame="off"] #frame:before
                                                     { background-image: url(../img/classic-frame-border-off.png); }
-#app[data-theme="classic"][data-frame="on"] #board:after, 
-#app[data-theme="classic"][data-frame="on"] #frame:after, 
-#app[data-theme="classic"][data-frame="on"] #frame:before  
+#app[data-theme="classic"][data-frame="on"] #board:after,
+#app[data-theme="classic"][data-frame="on"] #frame:after,
+#app[data-theme="classic"][data-frame="on"] #frame:before
                                                     { background-image: url(../img/classic-frame-border.png); }
 #app[data-theme="classic"] .square                  { background-image: url(../img/classic-square-black.png) }
 #app[data-theme="classic"] .white .poly > div,
@@ -1127,7 +1124,7 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 #app[data-theme="classic"] .black .poly .sphere     { background-image: url(../img/classic-sphere-black.png); }
 
 #app[data-theme="classic"] tbody tr:nth-child(odd)
-                           .square:nth-child(even), 
+                           .square:nth-child(even),
 #app[data-theme="classic"] tbody tr:nth-child(even)
                            .square:nth-child(odd)   { background-image: url(../img/classic-square-white.png); }
 
@@ -1135,42 +1132,42 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 
 #app[data-theme="marble"] th                                          { background-color: #303030; }
 #app[data-theme="marble"][data-frame="off"] #frame,
-#app[data-theme="marble"][data-frame="off"] #board:after, 
-#app[data-theme="marble"][data-frame="off"] #frame:after, 
+#app[data-theme="marble"][data-frame="off"] #board:after,
+#app[data-theme="marble"][data-frame="off"] #frame:after,
 #app[data-theme="marble"][data-frame="off"] #frame:before             { background-color: #B0B0B0; }
 #app[data-theme="marble"][data-frame="on"]  #frame,
-#app[data-theme="marble"][data-frame="on"]  #board:after, 
-#app[data-theme="marble"][data-frame="on"]  #frame:after, 
+#app[data-theme="marble"][data-frame="on"]  #board:after,
+#app[data-theme="marble"][data-frame="on"]  #frame:after,
 #app[data-theme="marble"][data-frame="on"]  #frame:before             { background-color: #202020; }
 #app[data-theme="marble"] .square                                     { background-color: #404040; }
-#app[data-theme="marble"] tbody tr:nth-child(odd) 
-                           .square:nth-child(even), 
-#app[data-theme="marble"] tbody tr:nth-child(even) 
+#app[data-theme="marble"] tbody tr:nth-child(odd)
+                           .square:nth-child(even),
+#app[data-theme="marble"] tbody tr:nth-child(even)
                           .square:nth-child(odd)                      { background-color: #FFF; }
-#app[data-theme="marble"] .black .poly > div, 
+#app[data-theme="marble"] .black .poly > div,
 #app[data-theme="marble"] .black .poly .sphere                        { background-color: #404040; }
 #app[data-theme="marble"] .white .poly > div,
 #app[data-theme="marble"] .white .poly .sphere                        { background-color: #FFF; }
-#app[data-theme="marble"] .white.bishop .rectangle.a .tp:before, 
+#app[data-theme="marble"] .white.bishop .rectangle.a .tp:before,
 #app[data-theme="marble"] .white.bishop .rectangle.b .tp:before       { border-bottom: 1.1em solid #EAE5E0; }
-#app[data-theme="marble"] .white.bishop .rectangle.a .tp:after, 
+#app[data-theme="marble"] .white.bishop .rectangle.a .tp:after,
 #app[data-theme="marble"] .white.bishop .rectangle.b.prim .tp:after   { border-top: 1.1em solid #EAE5E0; }
-#app[data-theme="marble"] .black.bishop .rectangle.a .tp:before, 
+#app[data-theme="marble"] .black.bishop .rectangle.a .tp:before,
 #app[data-theme="marble"] .black.bishop .rectangle.b .tp:before       { border-bottom: 1.1em solid #565453; }
-#app[data-theme="marble"] .black.bishop .rectangle.a .tp:after, 
+#app[data-theme="marble"] .black.bishop .rectangle.a .tp:after,
 #app[data-theme="marble"] .black.bishop .rectangle.b.prim .tp:after   { border-top: 1.1em solid #565453; }
 
 /* ---------------------------------------------------------------------------------------------------- marble textures */
 
 #app[data-theme="marble"] #scene                    { background: url(../img/back.jpg) no-repeat center center black; background-size: cover;}
 #app[data-theme="marble"] th                        { background-image: url(../img/marble-frame.png); }
-#app[data-theme="marble"][data-frame="off"] #board:after, 
-#app[data-theme="marble"][data-frame="off"] #frame:after, 
-#app[data-theme="marble"][data-frame="off"] #frame:before 
+#app[data-theme="marble"][data-frame="off"] #board:after,
+#app[data-theme="marble"][data-frame="off"] #frame:after,
+#app[data-theme="marble"][data-frame="off"] #frame:before
                                                     { background-image: url(../img/marble-frame-border-off.png); }
-#app[data-theme="marble"][data-frame="on"] #board:after, 
-#app[data-theme="marble"][data-frame="on"] #frame:after, 
-#app[data-theme="marble"][data-frame="on"] #frame:before  
+#app[data-theme="marble"][data-frame="on"] #board:after,
+#app[data-theme="marble"][data-frame="on"] #frame:after,
+#app[data-theme="marble"][data-frame="on"] #frame:before
                                                     { background-image: url(../img/marble-frame-border.png); }
 #app[data-theme="marble"] .square                   { background-image: url(../img/marble-square-black.png) }
 #app[data-theme="marble"] .white .poly > div,
@@ -1181,7 +1178,7 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 #app[data-theme="marble"] .white .poly .sphere      { background-image: url(../img/marble-sphere-white.png); }
 #app[data-theme="marble"] .black .poly .sphere      { background-image: url(../img/marble-sphere-black.png); }
 #app[data-theme="marble"] tbody tr:nth-child(odd)
-                        .square:nth-child(even), 
+                        .square:nth-child(even),
 #app[data-theme="marble"] tbody tr:nth-child(even)
                         .square:nth-child(odd)      { background-image: url(../img/marble-square-white.png); }
 
@@ -1192,11 +1189,11 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 #app[data-theme="flat"] #overlay                    { background-color: #E5E3DF; }
 #app[data-theme="flat"] #scene                      { background: radial-gradient(center, ellipse cover, #FFF 25%, #E5E3DF 72%); }
 #app[data-theme="flat"] #frame,
-#app[data-theme="flat"] #board:after, 
-#app[data-theme="flat"] #frame:after, 
+#app[data-theme="flat"] #board:after,
+#app[data-theme="flat"] #frame:after,
 #app[data-theme="flat"] #frame:before               { background-color: #B7B7B4; }
 #app[data-theme="flat"] .square                     { background-color: #C6C5C3; }
-#app[data-theme="flat"] tbody tr:nth-child(odd) .square:nth-child(even), 
+#app[data-theme="flat"] tbody tr:nth-child(odd) .square:nth-child(even),
 #app[data-theme="flat"] tbody tr:nth-child(even) .square:nth-child(odd) { background-color: #E0DFDD; }
 #app[data-theme="flat"] table span                  { color: #525150; }
 #app[data-theme="flat"] th                          { background-color: #E0DFDD; }
@@ -1207,25 +1204,25 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 #app[data-theme="flat"] .black .poly > div          { background-color: #FF432F; }
 #app[data-theme="flat"] .white .poly .sphere        { background: -webkit-radial-gradient(center, ellipse cover, rgba(0,162,255,1) 30%,rgba(0,89,141,1) 100%) 0em -1em; }
 #app[data-theme="flat"] .black .poly .sphere        { background: -webkit-radial-gradient(center, ellipse cover, rgba(255,67,47,1) 30%,rgba(141,36,25,1) 100%) 0em -1em; }
-#app[data-theme="flat"] .white.bishop .rectangle.a .tp:before, 
+#app[data-theme="flat"] .white.bishop .rectangle.a .tp:before,
 #app[data-theme="flat"] .white.bishop .rectangle.b .tp:before         { border-bottom: 1.1em solid #00A2FF; }
-#app[data-theme="flat"] .white.bishop .rectangle.a .tp:after, 
+#app[data-theme="flat"] .white.bishop .rectangle.a .tp:after,
 #app[data-theme="flat"] .white.bishop .rectangle.b.prim .tp:after     { border-top: 1.1em solid #00A2FF; }
-#app[data-theme="flat"] .black.bishop .rectangle.a .tp:before, 
+#app[data-theme="flat"] .black.bishop .rectangle.a .tp:before,
 #app[data-theme="flat"] .black.bishop .rectangle.b .tp:before         { border-bottom: 1.1em solid #FF432F; }
-#app[data-theme="flat"] .black.bishop .rectangle.a .tp:after, 
+#app[data-theme="flat"] .black.bishop .rectangle.a .tp:after,
 #app[data-theme="flat"] .black.bishop .rectangle.b.prim .tp:after     { border-top: 1.1em solid #FF432F; }
 
 /* ---------------------------------------------------------------------------------------------------- wireframe */
 
 #app[data-theme="wireframe"] #scene                 { background: radial-gradient(center, ellipse cover, #1D414D 0%,#000000 70%); }
 #app[data-theme="wireframe"] th                     { background-color: rgba(17,41,48,.6) }
-#app[data-theme="wireframe"] #frame                 { background-color: #001B20; } 
-#app[data-theme="wireframe"] #board:after, 
-#app[data-theme="wireframe"] #frame:after, 
+#app[data-theme="wireframe"] #frame                 { background-color: #001B20; }
+#app[data-theme="wireframe"] #board:after,
+#app[data-theme="wireframe"] #frame:after,
 #app[data-theme="wireframe"] #frame:before          { background-color: #011E24; border: 1px solid #007385; opacity: .4 }
 #app[data-theme="wireframe"] .square                { background-color: rgba(17,41,48,.0); }
-#app[data-theme="wireframe"] tbody tr:nth-child(odd) .square:nth-child(even), 
+#app[data-theme="wireframe"] tbody tr:nth-child(odd) .square:nth-child(even),
 #app[data-theme="wireframe"] tbody tr:nth-child(even) .square:nth-child(odd) { background-color: rgba(17,41,48,.6); }
 #app[data-theme="wireframe"] .white .poly > div     { background-color: #022A36; border: 1px solid #35C2D3;
                                                      box-shadow: inset 0 0 4em -1em #35C2D3; opacity: .5; }
@@ -1246,46 +1243,46 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
 #app[data-theme="wireframe"] .black .poly .sphere   { background-color: #1D414B; }
 #app[data-theme="wireframe"] .white .poly .sphere   { background-color: #1D414B; }
 
-#app[data-theme="wireframe"] .white.bishop .rectangle.a .tp:before, 
+#app[data-theme="wireframe"] .white.bishop .rectangle.a .tp:before,
 #app[data-theme="wireframe"] .white.bishop .rectangle.b .tp:before       { border-bottom: 1.1em solid rgba(53,194,211,.4); top: -1em; left: -.18em;}
-#app[data-theme="wireframe"] .white.bishop .rectangle.a .tp:after, 
+#app[data-theme="wireframe"] .white.bishop .rectangle.a .tp:after,
 #app[data-theme="wireframe"] .white.bishop .rectangle.b.prim .tp:after   { border-top: 1.1em solid rgba(53,194,211,.4); bottom: -1em; right: -.18em;}
-#app[data-theme="wireframe"] .black.bishop .rectangle.a .tp:before, 
+#app[data-theme="wireframe"] .black.bishop .rectangle.a .tp:before,
 #app[data-theme="wireframe"] .black.bishop .rectangle.b .tp:before       { border-bottom: 1.1em solid rgba(255,221,29,.4); top: -1em; left: -.18em;}
-#app[data-theme="wireframe"] .black.bishop .rectangle.a .tp:after, 
+#app[data-theme="wireframe"] .black.bishop .rectangle.a .tp:after,
 #app[data-theme="wireframe"] .black.bishop .rectangle.b.prim .tp:after   { border-top: 1.1em solid rgba(255,221,29,.4); bottom: -1em; right: -.18em;}
 
 /* ------------------------------------------------------- Responsive board */
 
-@media screen and (min-width: 48em), screen and (min-height: 48em) { 
+@media screen and (min-width: 48em), screen and (min-height: 48em) {
   #app[data-frame="off"] { font-size: 80px; }
-  #app[data-frame="on"] { font-size: 70px; } 
+  #app[data-frame="on"] { font-size: 70px; }
 }
-@media screen and (max-width: 48em), screen and (max-height: 48em) { 
+@media screen and (max-width: 48em), screen and (max-height: 48em) {
   #app[data-frame="off"] { font-size: 70px; }
-  #app[data-frame="on"] { font-size: 60px; } 
+  #app[data-frame="on"] { font-size: 60px; }
   #top-bar { margin-top: -.75em; }
 }
-@media screen and (max-width: 42em), screen and (max-height: 42em) { 
+@media screen and (max-width: 42em), screen and (max-height: 42em) {
   #app[data-frame="off"] { font-size: 60px; }
-  #app[data-frame="on"] { font-size: 50px; } 
-  #container { top: 55%; } 
+  #app[data-frame="on"] { font-size: 50px; }
+  #container { top: 55%; }
 }
-@media screen and (max-width: 34em), screen and (max-height: 34em) { 
+@media screen and (max-width: 34em), screen and (max-height: 34em) {
   #app[data-frame="off"] { font-size: 50px; }
-  #app[data-frame="on"] { font-size: 40px; } 
+  #app[data-frame="on"] { font-size: 40px; }
 }
-@media screen and (max-width: 26em), screen and (max-height: 26em) { 
+@media screen and (max-width: 26em), screen and (max-height: 26em) {
   #app[data-frame="off"] { font-size: 40px; }
-  #app[data-frame="on"] { font-size: 30px; } 
+  #app[data-frame="on"] { font-size: 30px; }
 }
-@media screen and (max-width: 20em), screen and (max-height: 20em) { 
+@media screen and (max-width: 20em), screen and (max-height: 20em) {
   #app[data-frame="off"] { font-size: 35px; }
 }
-@media screen and (max-height: 36em) { 
+@media screen and (max-height: 36em) {
   #logoimg { margin: 1em 0 1em 0; }
 }
-@media screen and (max-height: 32em) { 
+@media screen and (max-height: 32em) {
   #app[data-state="menu"] #overlay {
     z-index: 99;
     opacity: .85;
@@ -1294,7 +1291,7 @@ tfoot th:last-child   { background-position: right bottom; background-size: 332%
   #about h2 { font-size: .85em; }
   #about p { font-size: .75em; }
 }
-@media screen and (max-width: 24em), screen and (max-height : 24em) { 
+@media screen and (max-width: 24em), screen and (max-height : 24em) {
   h1 { font-size: 1.5em; }
   h2 { font-size: 1em; }
   #logoimg { margin: 2em 0 1em 0; }
