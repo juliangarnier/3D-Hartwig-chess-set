@@ -145,26 +145,41 @@ function moveScene(event) {
 
 function showMoves(Target) {
   var validMoves = chess.moves({ target: Target, verbose: true });
+    console.log(validMoves);
   for(var i=0; i<validMoves.length; i++) {
-    var validMove = validMoves[i];
-    var from = validMove.from;
-    var to = validMove.to;
-    var captured = validMove.captured;
-    document.getElementById(from).classList.add("current");
-    document.getElementById(to).classList.add("valid");
-    if (captured) { document.getElementById(to).classList.add("captured"); }
+      if (validMoves[i].to.length == 2)
+          {
+            var validMove = validMoves[i];
+            var from = validMove.from;
+            var to = validMove.to;
+            var captured = validMove.captured;
+            document.getElementById(from).classList.add("current");
+            var toElement = document.getElementById(to);
+            if(toElement)
+            {
+              toElement.classList.add("valid");
+              if (captured) { toElement.classList.add("captured"); }
+            }
+          }
   }
 }
 
 function hideMoves(Target) {
   var validMoves = chess.moves({ target: Target, verbose: true });
   for(var i=0; i<validMoves.length; i++) {
-    var validMove = validMoves[i];
-    var from = validMove.from;
-    var to = validMove.to;
-    document.getElementById(from).classList.remove("current");
-    document.getElementById(to).classList.remove("valid");
-    document.getElementById(to).classList.remove("captured");
+      if (validMoves[i].to.length == 2)
+          {
+            var validMove = validMoves[i];
+            var from = validMove.from;
+            var to = validMove.to;
+            document.getElementById(from).classList.remove("current");
+            var toElement = document.getElementById(to);
+            if(toElement)
+            {
+              toElement.classList.remove("valid");
+              toElement.classList.remove("captured");
+            }
+          }
   }
 }
 
