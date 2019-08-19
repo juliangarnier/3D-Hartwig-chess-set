@@ -42,7 +42,7 @@ if(checkTouch()) {
 }
 
 function initControls() {
-  for(var i=0; i<piece.length; i++) { 
+  for(var i=0; i<piece.length; i++) {
     piece[i].addEventListener(press, grabPiece, false);
   }
   app.addEventListener(drag, dragPiece, false);
@@ -53,7 +53,7 @@ function initControls() {
 }
 
 function grabPiece(event) {
-  if (!mouseDown && controls) {
+  if (!mouseDown && controls && !/(jail)$/.test(this.id)) {
     event.preventDefault();
     mouseDown = true;
     grabbed = this;
@@ -172,7 +172,7 @@ function createPiece(color, piece, position) {
   var clone = document.getElementById(piece).cloneNode(true);
   clone.addEventListener(press, grabPiece, false);
   clone.setAttribute("id",color+piece+position);
-  if ( color === "w" ) { clone.classList.add("white"); } 
+  if ( color === "w" ) { clone.classList.add("white"); }
   else { clone.classList.add("black"); }
   document.getElementById(position).appendChild(clone);
 }
@@ -189,7 +189,7 @@ function updateBoard() {
     var chessS = chess.get(tile);
     if (boardS && chessS) {
       if (boardS.type !== chessS.type || boardS.color !== chessS.color) {
-        updateTiles[tile] = chessS;   
+        updateTiles[tile] = chessS;
       }
     } else if (boardS || chessS) {
       updateTiles[tile] = chessS;
@@ -225,19 +225,19 @@ function updateBoard() {
   if (currentColor === "w") {
     updateView(0,0);
     Log(white+"'s turn");
-    if (inCheck) { 
+    if (inCheck) {
       Log(white+"'s king is in check !");
     }
-    if (inCheckmate) { 
+    if (inCheckmate) {
       Log(white+"'s king is in checkmate ! "+black+" wins !");
     }
   } else {
     updateView(0,180);
     Log(black+"'s turn");
-    if (inCheck) { 
+    if (inCheck) {
       Log(black+"'s king is in check !");
     }
-    if (inCheckmate) { 
+    if (inCheckmate) {
       Log(black+"'s king is in checkmate ! "+white+" wins");
     }
   }
