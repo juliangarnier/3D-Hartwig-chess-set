@@ -52,23 +52,30 @@ function initControls() {
   app.ontouchmove = function(event) { event.preventDefault(); }
 }
 
+function checkGrabPiece(grabbedId) {
+  // If piece is player's color and isn't a jail piece, it is valid
+  return currentColor == grabbedId[0] && !grabbedId.includes("jail");
+}
+
 function grabPiece(event) {
   if (!mouseDown && controls) {
-    event.preventDefault();
-    mouseDown = true;
-    grabbed = this;
-    grabbedID = grabbed.id.substr(-2);
-    startX = event.pageX - (document.body.offsetWidth/2);
-    startY = event.pageY - (document.body.offsetHeight/2);
-    style = window.getComputedStyle(grabbed);
-    matrix = style.getPropertyValue('-webkit-transform');
-    matrixParts = matrix.split(",");
-    grabbedW = parseInt(style.getPropertyValue('width'))/2;
-    grabbedX = parseInt(matrixParts[4]);
-    grabbedY = parseInt(matrixParts[5]);
-    grabbed.classList.add("grabbed");
-    showMoves(grabbedID);
-    highLight(grabbed, square);
+    if (checkGrabPiece(this.id)) {
+      event.preventDefault();
+      mouseDown = true;
+      grabbed = this;
+      grabbedID = grabbed.id.substr(-2);
+      startX = event.pageX - (document.body.offsetWidth/2);
+      startY = event.pageY - (document.body.offsetHeight/2);
+      style = window.getComputedStyle(grabbed);
+      matrix = style.getPropertyValue('-webkit-transform');
+      matrixParts = matrix.split(",");
+      grabbedW = parseInt(style.getPropertyValue('width'))/2;
+      grabbedX = parseInt(matrixParts[4]);
+      grabbedY = parseInt(matrixParts[5]);
+      grabbed.classList.add("grabbed");
+      showMoves(grabbedID);
+      highLight(grabbed, square);
+    }
   }
 }
 
