@@ -234,7 +234,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
 .poly .face,  
 .poly-group:first-child, 
 .bishop .poly-group:nth-child(2) {
-  transition: transform .2s linear;
+  transition: transform .2s ease-out;
 }
 
 .piece:active {
@@ -244,7 +244,7 @@ tbody span { line-height: 4.5em; padding-right: 0.3em; }
 }
 
 .piece.grabbed {
-  transition: all 0s linear;
+  transition: all .1s ease;
   z-index: 9999;
 }
 
