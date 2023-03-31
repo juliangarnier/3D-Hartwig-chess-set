@@ -45,11 +45,11 @@ function initControls() {
   for(var i=0; i<piece.length; i++) { 
     piece[i].addEventListener(press, grabPiece, false);
   }
-  app.addEventListener(drag, dragPiece, false);
-  app.addEventListener(drop, dropPiece, false);
-  app.addEventListener(drag, moveScene, false);
-  app.onselectstart = function(event) { event.preventDefault(); }
-  app.ontouchmove = function(event) { event.preventDefault(); }
+  document.addEventListener(drag, dragPiece, false);
+  document.addEventListener(drop, dropPiece, false);
+  document.addEventListener(drag, moveScene, false);
+  document.onselectstart = function(event) { event.preventDefault(); }
+  document.ontouchmove = function(event) { event.preventDefault(); }
 }
 
 function grabPiece(event) {
