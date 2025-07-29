@@ -17,6 +17,8 @@ body {
 button { 
   font-family: 'Lato', avenir, sans-serif;
   font-weight: 400;
+  color: blue;
+  hover:bold
 }
 
 body:not(.animated) *:not(#panes) { transition: all 0s linear; }
